@@ -1,0 +1,17 @@
+.home {
+  background-image: image-url('home-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 640px;
+
+  .title {
+    margin-top: 160px;
+    color: #FFFFFF;
+
+    h1 {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 96px;
+    }
+  }
+}
