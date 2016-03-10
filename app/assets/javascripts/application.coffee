@@ -16,3 +16,9 @@
 #= require semantic.min
 #= require blur.min
 #= require_tree .
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
