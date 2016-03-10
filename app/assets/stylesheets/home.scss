@@ -2,13 +2,14 @@
   background-image: image-url('home-bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 640px;
+  min-height: 1280px;
 
-  .title {
+  &Title {
     margin-top: 160px;
+    text-shadow: 1.5px 1.5px #000;
     color: #FFFFFF;
 
-    h1 {
+    &Text {
       margin-top: 5px;
       margin-bottom: 15px;
       font-size: 96px;
