@@ -50,5 +50,5 @@ game_rooms_vm = new Vue
     return
 
 PrivatePub.subscribe '/game_rooms/all', (data) ->
-  game_rooms_vm.game_rooms.push data.game_room
+  game_rooms_vm.game_rooms = data.game_rooms
   return

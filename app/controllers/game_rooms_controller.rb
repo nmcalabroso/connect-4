@@ -4,7 +4,7 @@ class GameRoomsController < ApplicationController
     room_name = "Room by #{ username }"
     game_room = GameRoom.create(name: room_name, first_player: username)
 
-    PrivatePub.publish_to '/game_rooms/all', game_room: game_room
+    publish_game_rooms
 
     respond_to do |format|
       format.json {
@@ -28,8 +28,15 @@ class GameRoomsController < ApplicationController
 
   def join
     game_room = GameRoom.find(params[:id])
+    unless game_room.open?
+      render status: :bad_request
+      return
+    end
+
     game_room.second_player = auto_generated_username
     game_room.save
+    game_room.on_going!
+    publish_game_rooms
 
     respond_to do |format|
       format.json {
@@ -46,5 +53,10 @@ class GameRoomsController < ApplicationController
 
   def auto_generated_username
     return 'User ' + SecureRandom.random_number(100).to_s
+  end
+
+  def publish_game_rooms
+    game_rooms = GameRoom.open
+    PrivatePub.publish_to '/game_rooms/all', game_rooms: game_rooms
   end
 end
