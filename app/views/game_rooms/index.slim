@@ -10,7 +10,7 @@
             h3.GameRoom-name
               | {{ game_room.name }}
           .four.wide.column
-            button.ui.teal.button Join
+            button.ui.teal.button v-on:click="join_game_room(game_room, $event)" Join
     .GameRooms-form.three.column.row
       .ui.six.column.segment.grid
         .ui.form

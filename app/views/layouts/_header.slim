@@ -1,3 +1,7 @@
-nav.ui.large.fixed.borderless.menu
+nav#navbar.ui.large.fixed.borderless.menu
   .ui.container
     a.header.item href=root_path Connect 4
+    .right.menu
+      .ui.inline.dropdown.item
+        strong
+          | {{ username }}

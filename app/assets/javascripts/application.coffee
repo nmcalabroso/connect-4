@@ -20,8 +20,15 @@
 
 window.security_token =  $('meta[name="csrf-token"]').attr('content')
 
-$.ajaxSetup({
-  headers: {
+$.ajaxSetup
+  headers:
     'X-CSRF-Token': window.security_token
-  }
-});
+
+window.username = localStorage.getItem('username')
+if(!username)
+  window.username = ''
+
+navbar_vm = new Vue
+  el: '#navbar'
+  data:
+    username: window.username

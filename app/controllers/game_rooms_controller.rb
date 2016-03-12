@@ -7,7 +7,9 @@ class GameRoomsController < ApplicationController
     PrivatePub.publish_to '/game_rooms/all', game_room: game_room
 
     respond_to do |format|
-      format.json { render json: { game_room: game_room }, status: :ok }
+      format.json {
+        render json: { username: game_room.first_player, game_room: game_room }, status: :ok
+      }
     end
   end
 
@@ -24,7 +26,25 @@ class GameRoomsController < ApplicationController
     @game_room = {id: 123456, name: 'meyagen'}
   end
 
+  def join
+    game_room = GameRoom.find(params[:id])
+    game_room.second_player = auto_generated_username
+    game_room.save
+
+    respond_to do |format|
+      format.json {
+        render json: { username: game_room.second_player, game_room: game_room }, status: :ok
+      }
+    end
+  end
+
+  private
+
   def game_room_params
     params.require(:game_room).permit(:username)
+  end
+
+  def auto_generated_username
+    return 'User ' + SecureRandom.random_number(100).to_s
   end
 end
