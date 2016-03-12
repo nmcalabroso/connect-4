@@ -23,7 +23,7 @@ class GameRoomsController < ApplicationController
   end
 
   def show
-    @game_room = {id: 123456, name: 'meyagen'}
+    @game_room = GameRoom.find(params[:id])
   end
 
   def join

@@ -1,14 +1,17 @@
-BOARD_WIDTH = 7
-BOARD_HEIGHT = 7
-
-game_board = null
-
 initialize_game_board = ->
-  first_dimension = Array.apply(null, Array(BOARD_WIDTH)).map ->
+  self_data = this
+  this.game_board_height = 7
+  this.game_board_width = 7
+
+  first_dimension = Array.apply(null, Array(this.game_board_width)).map ->
     return 0
-   
-  return first_dimension.map ->
-    return Array.apply(null, Array(BOARD_HEIGHT)).map ->
+
+  this.game_board = first_dimension.map ->
+    return Array.apply(null, Array(self_data.game_board_height)).map ->
       return 0
 
-game_board = initialize_game_board()
+  return
+
+game_board_vm = new Vue
+  el: '#game-room'
+  init: initialize_game_board

@@ -1,4 +1,10 @@
-.page
+#game-room.page
   .ui.centered.grid.container
     .one.column.row
-      h1.pageTitle = "Room by #{@game_room[:name]}"
+      h1.pageTitle = @game_room[:name]
+
+- content_for :subscriptions
+  = subscribe_to game_room_path(@game_room)
+
+- content_for :javascripts
+  = javascript_include_tag 'game_room'
