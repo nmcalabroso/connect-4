@@ -1,18 +1,37 @@
-create_game_room = (e) ->
-  e.preventDefault()
-  username = $('input#username').val()
-
+create_game_room = (username, event) ->
+  event.preventDefault()
   $.ajax
     url: '/game_rooms'
     type: 'POST'
     dataType: 'json'
     data:
-      username: username
-    success: (result) ->
-      console.log(result)
-      window.location.href = '/game_rooms/' + result.game_room.id;
-
+      game_room:
+        username: username
+    success: (data) ->
+      window.location.href = '/game_rooms/' + data.game_room.id;
+      return
   return
 
-create_game_room_button = $('button#create-game-room');
-create_game_room_button.click(create_game_room);
+vm = new Vue
+  el: '#game-rooms'
+  data:
+    game_rooms: []
+  methods:
+    create_game_room: create_game_room
+  init: ->
+    self_data = this
+    $.ajax
+      url: '/game_rooms'
+      type: 'GET'
+      dataType: 'json'
+      success: (data) ->
+        self_data.game_rooms = data.game_rooms
+        return
+      error: ->
+        self_data.game_rooms = []
+        return
+    return
+
+PrivatePub.subscribe '/game_rooms/all', (data) ->
+  vm.game_rooms.push data.game_room
+  return

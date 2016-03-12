@@ -1,32 +1,14 @@
-.page
+.page#game-rooms
   .ui.centered.grid.container
     .one.column.row
       h1.pageTitle Game Rooms
-    .GameRooms.three.column.row
-      .ui.six.column.segment.grid
-        .GameRoom.row
+    .three.column.row
+      ul.GameRooms.ui.six.column.segment.grid
+        li.GameRoom.row v-if='game_rooms.length <= 0' No available game room right now
+        li.GameRoom.row v-for='game_room in game_rooms'
           .center.aligned.twelve.wide.column
-            h3.GameRoom-name Room #1 by nmcalabroso
-          .four.wide.column
-            button.ui.teal.button Join
-        .GameRoom.row
-          .center.aligned.twelve.wide.column
-            h3.GameRoom-name Room #2 by meyagen
-          .four.wide.column
-            button.ui.teal.button Join
-        .GameRoom.row
-          .center.aligned.twelve.wide.column
-            h3.GameRoom-name Room #3 by allen.paul
-          .four.wide.column
-            button.ui.teal.button Join
-        .GameRoom.row
-          .center.aligned.twelve.wide.column
-            h3.GameRoom-name Room #4 by paulo.adaoag
-          .four.wide.column
-            button.ui.teal.button Join
-        .GameRoom.row
-          .center.aligned.twelve.wide.column
-            h3.GameRoom-name Room #5 by josh.spence
+            h3.GameRoom-name
+              | {{ game_room.name }}
           .four.wide.column
             button.ui.teal.button Join
     .GameRooms-form.three.column.row
@@ -34,6 +16,12 @@
         .ui.form
           .required.fields
             .twelve.wide.field
-              input#username type="text" placeholder="username"
+              input type="text" placeholder="username" v-model="username"
             .four.wide.field
-              button#create-game-room.ui.button.primary Create
+              button.ui.button.primary v-on:click="create_game_room(username, $event)" Create
+
+- content_for :subscriptions
+  = subscribe_to '/game_rooms/all'
+
+- content_for :javascripts
+  = javascript_include_tag 'game_rooms'
