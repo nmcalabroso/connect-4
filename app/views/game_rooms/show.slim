@@ -4,7 +4,7 @@
       h1.pageTitle = @game_room[:name]
 
 - content_for :subscriptions
-  = subscribe_to game_room_path(@game_room)
+  = subscribe_to game_board_path(@game_room)
 
 - content_for :javascripts
   = javascript_include_tag 'game_room'

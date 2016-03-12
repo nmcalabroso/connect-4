@@ -4,11 +4,11 @@ initialize_game_board = ->
   this.game_board_width = 7
 
   first_dimension = Array.apply(null, Array(this.game_board_width)).map ->
-    return 0
+    return 1
 
   this.game_board = first_dimension.map ->
     return Array.apply(null, Array(self_data.game_board_height)).map ->
-      return 0
+      return 1
 
   return
 

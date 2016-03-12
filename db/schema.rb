@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312135040) do
+ActiveRecord::Schema.define(version: 20160312192648) do
 
   create_table "game_rooms", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160312135040) do
     t.integer  "status",        default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "next_turn",     default: 1
+    t.text     "game_board",    default: "1111111111111111111111111111111111111111111111111"
   end
 
 end
