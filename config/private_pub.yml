@@ -5,6 +5,6 @@ test:
   server: 'http://localhost:9292/faye'
   secret_token: 'secret'
 production:
-  server: 'http://connnect-4.herokuapp.com/faye'
+  server: 'http://connnect-faye.herokuapp.com/faye'
   secret_token: 'neilfrancismuchillascalabroso'
   signature_expiration: 86400
