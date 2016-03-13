@@ -9,6 +9,7 @@ create_game_room = (username, event) ->
         username: username
     success: (data) ->
       localStorage.setItem 'username', data.username
+      localStorage.setItem 'player_number', 1
       window.location.href = '/game_rooms/' + data.game_room.id;
       return
   return
@@ -23,6 +24,7 @@ join_game_room = (game_room, event) ->
       if !localStorage.getItem('username')
         localStorage.setItem 'username', data.username
 
+      localStorage.setItem 'player_number', 2
       window.location.href = '/game_rooms/' + data.game_room.id;
       return
   return

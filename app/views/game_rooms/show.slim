@@ -2,6 +2,19 @@
   .ui.centered.grid.container
     .one.column.row
       h1.pageTitle = @game_room[:name]
+    .one.column.row
+      .ui.column.segment.grid
+        table.ui.fixed.striped.table
+          thead
+            tr
+              th.center.aligned v-for="column in game_board" track-by="$index"
+                button.ui.large.teal.button v-on:click="insert_to_column($index, $event)"
+          tbody
+            tr.center.aligned v-for="row in game_board"
+              td height="50" v-for="column in game_board[$index]" track-by="$index"
+                img.ui.fluid.rounded.image src="http://semantic-ui.com/images/avatar2/small/lena.png" v-show="column == 1"
+                img.ui.fluid.rounded.image src="http://semantic-ui.com/images/avatar2/small/matthew.png" v-show="column == 2"
+
 
 - content_for :subscriptions
   = subscribe_to game_board_path(@game_room)

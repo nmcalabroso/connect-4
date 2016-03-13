@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160312192648) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "next_turn",     default: 1
-    t.text     "game_board",    default: "1111111111111111111111111111111111111111111111111"
+    t.text     "game_board",    default: "0000000000000000000000000000000000000000000000000"
   end
 
 end
