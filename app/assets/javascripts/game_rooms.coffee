@@ -18,7 +18,7 @@ join_game_room = (game_room, event) ->
   event.preventDefault()
   $.ajax
     url: '/game_rooms/' + game_room.id.toString() + '/join'
-    type: 'PATCH'
+    type: 'PUT'
     dataType: 'json'
     success: (data) ->
       localStorage.setItem 'username', data.username

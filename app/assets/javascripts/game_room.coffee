@@ -57,7 +57,7 @@ update_server_game_board = (game_board) ->
 
   $.ajax
     url: url
-    method: 'PATCH'
+    method: 'PUT'
     dataType: 'json'
     data:
       user: user
