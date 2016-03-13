@@ -1,14 +1,14 @@
-#game-room.page
+#game-room.page data-id=@game_room.id data-player-turn=@game_room.next_turn
   .ui.centered.grid.container
     .one.column.row
-      h1.pageTitle = @game_room[:name]
+      h1.pageTitle = @game_room.name
     .one.column.row
       .ui.column.segment.grid
         table.ui.fixed.striped.table
           thead
             tr
               th.center.aligned v-for="column in game_board" track-by="$index"
-                button.ui.large.teal.button v-on:click="insert_to_column($index, $event)"
+                button.ui.large.teal.button v-on:click="insert_to_column($index, $event)" :disabled="!your_turn"
           tbody
             tr.center.aligned v-for="row in game_board"
               td height="50" v-for="column in game_board[$index]" track-by="$index"

@@ -21,9 +21,7 @@ join_game_room = (game_room, event) ->
     type: 'PATCH'
     dataType: 'json'
     success: (data) ->
-      if !localStorage.getItem('username')
-        localStorage.setItem 'username', data.username
-
+      localStorage.setItem 'username', data.username
       localStorage.setItem 'player_number', 2
       window.location.href = '/game_rooms/' + data.game_room.id;
       return
