@@ -5,12 +5,11 @@ class GameBoardsController < ApplicationController
     game_board = params[:game_board]
     next_turn = next_player user[:player_number].to_i
 
-    byebug
     respond_to do |format|
       if game_room.playing_by? user[:username]
         if game_room.turn_now? user[:player_number].to_i
           game_room.update(game_board: game_board, next_turn: next_turn)
-          result = { user: user, game_board: game_board }
+          result = { user: user, game_room: game_room }
           PrivatePub.publish_to game_board_path(game_room), result
           status = :ok
         else
